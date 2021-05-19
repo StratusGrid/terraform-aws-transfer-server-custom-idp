@@ -4,6 +4,7 @@ This Terraform module will create a custom identity provider based on AWS Secret
 ### Example usage
 Create a SFTP server with the custom identity provider
 
+```
 module "transfer-server-custom-idp" {
   name_prefix = var.name_prefix
   source  = "StratusGrid/transfer-server-custom-idp/aws"
@@ -11,5 +12,6 @@ module "transfer-server-custom-idp" {
 
   region = var.region
 }
+```
 
 To create any user to connect to this AWS Transfer server, used [this other module](https://registry.terraform.io/modules/StratusGrid/transfer-server-custom-idp-user/aws/latest)
