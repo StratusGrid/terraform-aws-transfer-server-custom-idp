@@ -8,7 +8,7 @@ Create a SFTP server with the custom identity provider
 module "transfer-server-custom-idp" {
   name_prefix = var.name_prefix
   source  = "StratusGrid/transfer-server-custom-idp/aws"
-  version = "1.0.1"
+  version = "1.0.2"
 
   region = var.region
 }
