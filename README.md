@@ -2,7 +2,7 @@
 This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy.
 
 ### Example usage
-Create a SFTP server with the custom identity provider
+Create a SFTP server with the custom identity provider.
 
 ```
 module "transfer-server-custom-idp" {
