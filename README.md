@@ -14,4 +14,4 @@ module "transfer-server-custom-idp" {
 }
 ```
 
-To create any user to connect to this AWS Transfer server, used [this other module](https://registry.terraform.io/modules/StratusGrid/transfer-server-custom-idp-user/aws/latest)
+To create any user to connect to this AWS Transfer server, use [this other module](https://registry.terraform.io/modules/StratusGrid/transfer-server-custom-idp-user/aws/latest)
