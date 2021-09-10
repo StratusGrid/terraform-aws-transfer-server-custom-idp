@@ -4,5 +4,7 @@ mergeCommitAllowed: false
 deleteBranchOnMerge: true
 branchProtectionRules:
 - pattern: main
+  dismissesStaleReviews: true
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
+  requiresStrictStatusChecks: true
