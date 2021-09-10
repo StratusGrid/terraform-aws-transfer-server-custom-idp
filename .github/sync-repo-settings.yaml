@@ -6,4 +6,3 @@ branchProtectionRules:
 - pattern: main
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
-  requiresStrictStatusChecks: true
