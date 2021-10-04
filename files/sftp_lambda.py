@@ -54,8 +54,7 @@ def lambda_handler(event, context):
     if 'Role' in resp_dict:
         resp_data['Role'] = resp_dict['Role']
     else:
-        print("No field match for role - Set empty string in response")
-        resp_data['Role'] = ''
+        resp_data['Role'] = os.getenv('DEFAULT_IAM_ROLE_ARN')
 
     # These are optional so ignore if not present
     if 'Policy' in resp_dict:
@@ -73,6 +72,7 @@ def lambda_handler(event, context):
 
     print("Completed Response Data: "+json.dumps(resp_data))
     return resp_data
+
 
 def get_secret(id):
     region = os.environ['SecretsManagerRegion']
