@@ -43,6 +43,7 @@ resource "aws_api_gateway_model" "userconfig" {
   )
 }
 
+#tfsec:ignore:aws-api-gateway-enable-tracing #tfsec:ignore:aws-api-gateway-enable-access-logging -- Ignores warming on Access logging not being configured
 resource "aws_api_gateway_stage" "prod" {
   stage_name    = "prod"
   rest_api_id   = aws_api_gateway_rest_api.sftp.id
@@ -91,7 +92,6 @@ resource "aws_api_gateway_resource" "config" {
   path_part   = "config"
 }
 
-
 resource "aws_api_gateway_method" "get" {
   rest_api_id   = aws_api_gateway_rest_api.sftp.id
   resource_id   = aws_api_gateway_resource.config.id
@@ -126,7 +126,6 @@ resource "aws_api_gateway_method_response" "response_200" {
     "application/json" = aws_api_gateway_model.userconfig.name
   }
 }
-
 
 resource "aws_api_gateway_integration" "sftp" {
   rest_api_id             = aws_api_gateway_rest_api.sftp.id
@@ -181,6 +180,7 @@ EOF
   )
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on Overly permissive policies
 resource "aws_iam_role_policy" "cloudwatch" {
   name = "ApiGatewayLogsPolicy"
   role = aws_iam_role.cloudwatch.id

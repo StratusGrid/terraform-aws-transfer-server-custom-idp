@@ -6,6 +6,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
   source_arn    = "arn:aws:execute-api:${var.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.sftp.id}/*/${aws_api_gateway_method.get.http_method}${aws_api_gateway_resource.config.path}"
 }
 
+#tfsec:ignore:aws-lambda-enable-tracing -- Ignores warning on Function not having tracing enabled
 resource "aws_lambda_function" "sftp" {
   description      = "A function to lookup and return user data from AWS Secrets Manager."
   filename         = data.archive_file.sftp_lambda.output_path

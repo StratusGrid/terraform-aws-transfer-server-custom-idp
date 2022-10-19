@@ -1,7 +1,3 @@
-data "aws_region" "current" {}
-
-data "aws_caller_identity" "current" {}
-
 resource "aws_iam_role" "sftp_transfer_server" {
   name = "${var.name_prefix}-sftp-transfer-server-iam-role${var.name_suffix}"
 
@@ -27,6 +23,7 @@ EOF
   )
 }
 
+#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on Overly permissive policies
 resource "aws_iam_role_policy" "sftp_transfer_server" {
   name = "${var.name_prefix}-sftp-transfer-server-iam-policy${var.name_suffix}"
   role = aws_iam_role.sftp_transfer_server.id

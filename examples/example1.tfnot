@@ -1,0 +1,7 @@
+module "transfer-server-custom-idp" {
+  name_prefix = var.name_prefix
+  source  = "StratusGrid/transfer-server-custom-idp/aws"
+  version = "1.1.0"
+
+  region = var.region
+}
