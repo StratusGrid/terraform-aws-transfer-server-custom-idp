@@ -23,7 +23,6 @@ EOF
   )
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on Overly permissive policies
 resource "aws_iam_role_policy" "sftp_transfer_server" {
   name = "${var.name_prefix}-sftp-transfer-server-iam-policy${var.name_suffix}"
   role = aws_iam_role.sftp_transfer_server.id
@@ -33,18 +32,25 @@ resource "aws_iam_role_policy" "sftp_transfer_server" {
     "Version": "2012-10-17",
     "Statement": [
         {
-        "Sid": "AllowFullAccesstoCloudWatchLogs",
-        "Effect": "Allow",
-        "Action": [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:DescribeLogGroups",
-          "logs:DescribeLogStreams",
-          "logs:PutLogEvents",
-          "logs:GetLogEvents",
-          "logs:FilterLogEvents"
-        ],
-        "Resource": "*"
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:GetLogEvents",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/transfer/${aws_transfer_server.sftp_transfer_server.id}:log-stream:*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:FilterLogEvents",
+                "logs:CreateLogGroup"
+            ],
+            "Resource": "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/transfer/${aws_transfer_server.sftp_transfer_server.id}"
         }
     ]
 }
