@@ -43,13 +43,18 @@ resource "aws_api_gateway_model" "userconfig" {
   )
 }
 
-#tfsec:ignore:aws-api-gateway-enable-tracing #tfsec:ignore:aws-api-gateway-enable-access-logging -- Ignores warming on Access logging not being configured
 resource "aws_api_gateway_stage" "prod" {
-  stage_name    = "prod"
-  rest_api_id   = aws_api_gateway_rest_api.sftp.id
-  deployment_id = aws_api_gateway_deployment.sftp.id
-  tags = merge(
-    var.input_tags,
+  stage_name           = "prod"
+  rest_api_id          = aws_api_gateway_rest_api.sftp.id
+  deployment_id        = aws_api_gateway_deployment.sftp.id
+  xray_tracing_enabled = true
+
+  access_log_settings {
+    destination_arn = aws_iam_role.cloudwatch.arn
+    format          = "json"
+  }
+
+  tags = merge(var.input_tags,
     {
       "Name" = "${var.name_prefix}-sftp-transfer-server-custom-idp-api-stage${var.name_suffix}"
     },
@@ -180,7 +185,6 @@ EOF
   )
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on Overly permissive policies
 resource "aws_iam_role_policy" "cloudwatch" {
   name = "ApiGatewayLogsPolicy"
   role = aws_iam_role.cloudwatch.id
@@ -190,17 +194,25 @@ resource "aws_iam_role_policy" "cloudwatch" {
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "logs:CreateLogGroup",
+                "logs:GetLogEvents",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/api-gateway/*:log-stream:*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
                 "logs:CreateLogStream",
                 "logs:DescribeLogGroups",
                 "logs:DescribeLogStreams",
-                "logs:PutLogEvents",
-                "logs:GetLogEvents",
-                "logs:FilterLogEvents"
+                "logs:FilterLogEvents",
+                "logs:CreateLogGroup"
             ],
-            "Resource": "*"
+            "Resource": "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/api-gateway/*"
         }
     ]
 }
