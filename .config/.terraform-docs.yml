@@ -1,0 +1,46 @@
+version: ""
+
+formatter: markdown table
+
+name:  terraform-aws-transfer-server-custom-idp
+
+content: |-
+  # terraform-aws-transfer-server-custom-idp
+
+  GitHub: [StratusGrid/terraform-aws-transfer-server-custom-idp](https://github.com/StratusGrid/terraform-aws-transfer-server-custom-idp)
+
+  This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy. 
+  
+  ## Example Usage:
+  Create a SFTP server with the custom identity provider.
+  ```hcl
+  {{ include "examples/example1.tfnot" }}
+  ```
+  ---
+  To create any user to connect to this AWS Transfer server, use [this other module](https://registry.terraform.io/modules/StratusGrid/transfer-server-custom-idp-user/aws/latest)
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  ---
+  
+  <span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+
+sections:
+  show:
+    - resources
+    - inputs
+    - outputs
+    - providers
+    - requirements
+
+sort:
+  enabled: true
+  by: name
+
+output:
+  file: README.md
+  mode: replace

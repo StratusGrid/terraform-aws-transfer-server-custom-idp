@@ -14,9 +14,11 @@ resource "aws_lambda_function" "sftp" {
   handler          = "sftp_lambda.lambda_handler"
   runtime          = "python3.7"
   source_code_hash = filebase64sha256(data.archive_file.sftp_lambda.output_path)
+
   tracing_config {
-    mode = "PassThrough"
+    mode = "Active"
   }
+
   timeouts {}
   environment {
     variables = {
@@ -79,7 +81,6 @@ resource "aws_iam_role_policy_attachment" "sftp_lambda_role" {
   role       = aws_iam_role.sftp_lambda_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
-
 
 data "archive_file" "sftp_lambda" {
   type        = "zip"
