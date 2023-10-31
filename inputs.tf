@@ -25,3 +25,15 @@ variable "name_suffix" {
   type        = string
   default     = ""
 }
+
+variable "python_runtime" {
+  type        = string
+  description = "Python version used for lambda function"
+  nullable    = false
+  default = "python3.7"
+
+  validation {
+    condition     = can(regex("^python", var.python_runtime))
+    error_message = "Invalid value for variable: python_runtime it must be a python runtime."
+  }
+}
