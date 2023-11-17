@@ -38,6 +38,7 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 | [aws_api_gateway_resource.users](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource) | resource |
 | [aws_api_gateway_rest_api.sftp](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api) | resource |
 | [aws_api_gateway_stage.prod](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage) | resource |
+| [aws_cloudwatch_log_group.custom_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 | [aws_iam_role.cloudwatch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role.sftp_lambda_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role.sftp_transfer_server](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
@@ -55,11 +56,15 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_custom_log_group"></a> [custom\_log\_group](#input\_custom\_log\_group) | Bool to determine if a customer cloudwatch log group is used | `bool` | `false` | no |
+| <a name="input_custom_log_group_name"></a> [custom\_log\_group\_name](#input\_custom\_log\_group\_name) | String to use as a custom log group name | `string` | `""` | no |
 | <a name="input_input_tags"></a> [input\_tags](#input\_input\_tags) | Map of tags to apply to resources | `map(string)` | `{}` | no |
 | <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | String to use as prefix on object names | `string` | n/a | yes |
 | <a name="input_name_suffix"></a> [name\_suffix](#input\_name\_suffix) | String to append to object names. This is optional, so start with dash if using | `string` | `""` | no |
+| <a name="input_python_runtime"></a> [python\_runtime](#input\_python\_runtime) | Python version used for lambda function | `string` | `"python3.7"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
 | <a name="input_secrets_prefix"></a> [secrets\_prefix](#input\_secrets\_prefix) | Prefix used to create AWS Secrets | `string` | `"SFTP"` | no |
+| <a name="input_xray_enabled"></a> [xray\_enabled](#input\_xray\_enabled) | Bool to determine if Xray tracing is enabled | `bool` | `false` | no |
 
 ## Outputs
 

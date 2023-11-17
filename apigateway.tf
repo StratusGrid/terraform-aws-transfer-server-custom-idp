@@ -47,12 +47,16 @@ resource "aws_api_gateway_stage" "prod" {
   stage_name           = "prod"
   rest_api_id          = aws_api_gateway_rest_api.sftp.id
   deployment_id        = aws_api_gateway_deployment.sftp.id
-  xray_tracing_enabled = true
+  xray_tracing_enabled = var.xray_enabled
 
-  access_log_settings {
-    destination_arn = aws_iam_role.cloudwatch.arn
-    format          = "json"
+  dynamic "access_log_settings" {
+    for_each = var.custom_log_group ? [1] : []
+    content {
+      destination_arn = aws_cloudwatch_log_group.custom_log_group[0].arn
+      format          = "json"
+    }
   }
+
 
   tags = merge(var.input_tags,
     {
@@ -217,4 +221,11 @@ resource "aws_iam_role_policy" "cloudwatch" {
     ]
 }
 EOF
+}
+
+resource "aws_cloudwatch_log_group" "custom_log_group" {
+  count = var.custom_log_group ? 1 : 0
+  name = var.custom_log_group_name
+
+  tags = var.input_tags
 }
