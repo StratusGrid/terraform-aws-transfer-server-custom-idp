@@ -225,7 +225,7 @@ EOF
 
 resource "aws_cloudwatch_log_group" "custom_log_group" {
   count = var.custom_log_group ? 1 : 0
-  name = var.custom_log_group_name
+  name  = var.custom_log_group_name
 
   tags = var.input_tags
 }

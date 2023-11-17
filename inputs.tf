@@ -30,7 +30,7 @@ variable "python_runtime" {
   type        = string
   description = "Python version used for lambda function"
   nullable    = false
-  default = "python3.7"
+  default     = "python3.7"
 
   validation {
     condition     = can(regex("^python", var.python_runtime))
