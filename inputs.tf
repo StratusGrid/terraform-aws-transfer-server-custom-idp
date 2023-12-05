@@ -55,3 +55,8 @@ variable "custom_log_group_name" {
   type        = string
   default     = ""
 }
+variable "apigw_caching_enable" {
+  description = "String to use as a custom log group name"
+  type        = bool
+  default     = false
+}
