@@ -30,10 +30,28 @@ variable "python_runtime" {
   type        = string
   description = "Python version used for lambda function"
   nullable    = false
-  default = "python3.7"
+  default     = "python3.7"
 
   validation {
     condition     = can(regex("^python", var.python_runtime))
     error_message = "Invalid value for variable: python_runtime it must be a python runtime."
   }
+}
+
+variable "xray_enabled" {
+  description = "Bool to determine if Xray tracing is enabled"
+  type        = bool
+  default     = false
+}
+
+variable "custom_log_group" {
+  description = "Bool to determine if a customer cloudwatch log group is used"
+  type        = bool
+  default     = false
+}
+
+variable "custom_log_group_name" {
+  description = "String to use as a custom log group name"
+  type        = string
+  default     = ""
 }
