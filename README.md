@@ -56,6 +56,7 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_apigw_caching_enable"></a> [apigw\_caching\_enable](#input\_apigw\_caching\_enable) | Bool to enable the cache in the APIGW | `bool` | `false` | no |
 | <a name="input_custom_log_group"></a> [custom\_log\_group](#input\_custom\_log\_group) | Bool to determine if a customer cloudwatch log group is used | `bool` | `false` | no |
 | <a name="input_custom_log_group_name"></a> [custom\_log\_group\_name](#input\_custom\_log\_group\_name) | String to use as a custom log group name | `string` | `""` | no |
 | <a name="input_input_tags"></a> [input\_tags](#input\_input\_tags) | Map of tags to apply to resources | `map(string)` | `{}` | no |

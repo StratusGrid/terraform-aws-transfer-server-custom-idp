@@ -55,3 +55,8 @@ variable "custom_log_group_name" {
   type        = string
   default     = ""
 }
+variable "apigw_caching_enable" {
+  description = "Bool to enable the cache in the APIGW"
+  type        = bool
+  default     = false
+}

@@ -43,11 +43,13 @@ resource "aws_api_gateway_model" "userconfig" {
   )
 }
 
-resource "aws_api_gateway_stage" "prod" {
+
+resource "aws_api_gateway_stage" "prod" { #tfsec:ignore:aws-api-gateway-enable-access-logging ignoring it as it's a dynamic block
   stage_name           = "prod"
   rest_api_id          = aws_api_gateway_rest_api.sftp.id
   deployment_id        = aws_api_gateway_deployment.sftp.id
-  xray_tracing_enabled = var.xray_enabled
+  xray_tracing_enabled = var.xray_enabled #tfsec:ignore:aws-api-gateway-enable-tracing ignoring it as it's a variable
+
 
   dynamic "access_log_settings" {
     for_each = var.custom_log_group ? [1] : []
@@ -119,6 +121,7 @@ resource "aws_api_gateway_method_settings" "get" {
   settings {
     metrics_enabled = true
     logging_level   = "ERROR"
+    caching_enabled = var.apigw_caching_enable #tfsec:ignore:aws-api-gateway-enable-cache ignoring it as it's a variable
   }
 }
 
