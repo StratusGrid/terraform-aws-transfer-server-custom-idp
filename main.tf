@@ -110,10 +110,11 @@ POLICY
 }
 
 resource "aws_transfer_server" "sftp_transfer_server" {
-  identity_provider_type = "API_GATEWAY"
-  logging_role           = aws_iam_role.sftp_transfer_server.arn
-  invocation_role        = aws_iam_role.sftp_transfer_server_invocation.arn
-  url                    = aws_api_gateway_stage.prod.invoke_url
+  identity_provider_type      = "API_GATEWAY"
+  logging_role                = aws_iam_role.sftp_transfer_server.arn
+  invocation_role             = aws_iam_role.sftp_transfer_server_invocation.arn
+  url                         = aws_api_gateway_stage.prod.invoke_url
+  structured_log_destinations = var.server_loggroup_arns
 
   tags = merge(
     var.input_tags,
