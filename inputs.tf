@@ -62,7 +62,7 @@ variable "apigw_caching_enable" {
   default     = false
 }
 
-variable "server_loggroup_arn" {
+variable "server_loggroup_arns" {
   description = "List of LogGroup arns for Transfer Server"
   type        = list
   default     = []
