@@ -64,6 +64,6 @@ variable "apigw_caching_enable" {
 
 variable "server_loggroup_arns" {
   description = "List of LogGroup arns for Transfer Server"
-  type        = list
+  type        = list(any)
   default     = []
 }
