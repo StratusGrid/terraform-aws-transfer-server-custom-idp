@@ -22,3 +22,8 @@ output "transfer_server_id" {
   description = "The Server ID of the Transfer Server (e.g., s-12345678)"
   value       = aws_transfer_server.sftp_transfer_server.id
 }
+
+output "lambda_role_arn" {
+  description = "The ARN of role the Lambda used to access secrets. Used to add additional permissions as needed."
+  value       = aws_iam_role.sftp_lambda_role
+}

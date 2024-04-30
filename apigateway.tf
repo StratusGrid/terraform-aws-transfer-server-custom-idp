@@ -226,6 +226,15 @@ resource "aws_iam_role_policy" "cloudwatch" {
 EOF
 }
 
+data "aws_iam_policy" "cloudwatch_log_access" {
+  arn = "arn:aws:iam::aws:policy/AmazonAPIGatewayPushToCloudWatchLogs"
+}
+
+resource "aws_iam_role_policy_attachment" "sto-readonly-role-policy-attach" {
+  role       = aws_iam_role.cloudwatch.id
+  policy_arn = data.aws_iam_policy.cloudwatch_log_access.arn
+}
+
 resource "aws_cloudwatch_log_group" "custom_log_group" {
   count = var.custom_log_group ? 1 : 0
   name  = var.custom_log_group_name
