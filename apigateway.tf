@@ -227,7 +227,7 @@ EOF
 }
 
 data "aws_iam_policy" "cloudwatch_log_access" {
-  arn = "arn:aws:iam::aws:policy/AmazonAPIGatewayPushToCloudWatchLogs"
+  arn = "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
 }
 
 resource "aws_iam_role_policy_attachment" "sto-readonly-role-policy-attach" {
