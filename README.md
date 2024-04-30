@@ -13,7 +13,7 @@
 
 GitHub: [StratusGrid/terraform-aws-transfer-server-custom-idp](https://github.com/StratusGrid/terraform-aws-transfer-server-custom-idp)
 
-This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy. 
+This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy.
 
 ## Example Usage:
 Create a SFTP server with the custom identity provider.
@@ -58,6 +58,7 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 | [aws_iam_role_policy.sftp_transfer_server](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy.sftp_transfer_server_invocation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy_attachment.sftp_lambda_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.sto-readonly-role-policy-attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_lambda_function.sftp](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
 | [aws_lambda_permission.apigw_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
 | [aws_transfer_server.sftp_transfer_server](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/transfer_server) | resource |
@@ -83,6 +84,7 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 | Name | Description |
 |------|-------------|
 | <a name="output_invoke_url"></a> [invoke\_url](#output\_invoke\_url) | URL used for REST API invovation |
+| <a name="output_lambda_role"></a> [lambda\_role](#output\_lambda\_role) | The name of role the Lambda used to access secrets. Used to add additional permissions as needed. |
 | <a name="output_rest_api_http_method"></a> [rest\_api\_http\_method](#output\_rest\_api\_http\_method) | REST API calling method |
 | <a name="output_rest_api_id"></a> [rest\_api\_id](#output\_rest\_api\_id) | ID of the REST API |
 | <a name="output_rest_api_stage_name"></a> [rest\_api\_stage\_name](#output\_rest\_api\_stage\_name) | Name used for the stage of API |
