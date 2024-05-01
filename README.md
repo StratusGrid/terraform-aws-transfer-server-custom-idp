@@ -75,6 +75,7 @@ To create any user to connect to this AWS Transfer server, use [this other modul
 | <a name="input_python_runtime"></a> [python\_runtime](#input\_python\_runtime) | Python version used for lambda function | `string` | `"python3.7"` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region | `string` | n/a | yes |
 | <a name="input_secrets_prefix"></a> [secrets\_prefix](#input\_secrets\_prefix) | Prefix used to create AWS Secrets | `string` | `"SFTP"` | no |
+| <a name="input_server_loggroup_arns"></a> [server\_loggroup\_arns](#input\_server\_loggroup\_arns) | List of LogGroup arns for Transfer Server | `list(any)` | `[]` | no |
 | <a name="input_xray_enabled"></a> [xray\_enabled](#input\_xray\_enabled) | Bool to determine if Xray tracing is enabled | `bool` | `false` | no |
 
 ## Outputs
