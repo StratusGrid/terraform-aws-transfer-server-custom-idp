@@ -13,7 +13,7 @@
 
 GitHub: [StratusGrid/terraform-aws-transfer-server-custom-idp](https://github.com/StratusGrid/terraform-aws-transfer-server-custom-idp)
 
-This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy.
+This Terraform module will create a custom identity provider based on AWS Secrets (managed by AWS Secret Manager) for the AWS Transfer Familiy. 
 
 ## Example Usage:
 Create a SFTP server with the custom identity provider.
